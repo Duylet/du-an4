@@ -11,6 +11,7 @@ async function checkStatus() {
   dot.className = "dot";
   try {
     const response = await fetch("/api/status", { cache: "no-store" });
+    if (!response.ok) throw new Error("HTTP " + response.status);
     const data = await response.json();
     const gateway = data.gateway;
     if (gateway.running) {
@@ -24,7 +25,7 @@ async function checkStatus() {
   } catch {
     dot.className = "dot offline";
     title.textContent = "Không kiểm tra được";
-    message.textContent = "Không thể liên hệ máy chủ demo. Hãy kiểm tra terminal đang chạy npm start.";
+    message.textContent = "Không thể liên hệ máy chủ demo. Hãy kiểm tra terminal đang chạy python app.py.";
   } finally {
     checkedAt.textContent = "Kiểm tra lúc " + new Date().toLocaleTimeString("vi-VN");
     refreshButton.disabled = false;
