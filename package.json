@@ -1,0 +1,13 @@
+{
+  "name": "openclaw-local-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Trang demo cục bộ để kiểm tra OpenClaw Gateway và mở Control UI",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
