@@ -1,22 +1,44 @@
-# OpenClaw Demo — Trợ lý AI chạy cục bộ
+# OpenClaw Demo — Python
 
-Dự án demo học tập dựa trên cách triển khai OpenClaw: chạy Gateway trên máy cá nhân và mở Control UI để trò chuyện với trợ lý AI. Dự án này **không sao chép mã nguồn OpenClaw**; nó cung cấp hướng dẫn và tiện ích khởi chạy/kiểm tra cài đặt OpenClaw chính thức.
+Dự án demo học tập dựa trên cách triển khai OpenClaw: chạy Gateway trên máy cá nhân và mở Control UI để trò chuyện với trợ lý AI. Bản demo dùng **Python 3** cho máy chủ web, không cần cài thư viện Python bên ngoài. Dự án này không sao chép mã nguồn OpenClaw.
 
-## Yêu cầu
+## 1. Yêu cầu
 
-- Windows 10/11, macOS hoặc Linux
-- Node.js theo yêu cầu hiện hành của OpenClaw (xem [Getting started](https://github.com/openclaw/openclaw/blob/main/docs/start/getting-started.md))
-- Một phương thức truy cập mô hình AI được OpenClaw hỗ trợ (đăng nhập CLI hoặc API key)
+- Python 3.10 trở lên (bản demo dùng thư viện chuẩn của Python).
+- Muốn dùng trợ lý AI thật thì cần cài OpenClaw riêng và hoàn tất cấu hình mô hình AI. OpenClaw có yêu cầu runtime riêng; xem [Getting started](https://github.com/openclaw/openclaw/blob/main/docs/start/getting-started.md).
 
-## Cài đặt OpenClaw
+## 2. Chạy demo bằng Python trong VS Code
 
-### Windows PowerShell
+Mở terminal trong thư mục dự án:
+
+```powershell
+python --version
+python app.py
+```
+
+Nếu máy bạn dùng lệnh `py` thay vì `python`, chạy:
+
+```powershell
+py app.py
+```
+
+Sau khi terminal hiện địa chỉ máy chủ, mở trình duyệt tại:
+
+```text
+http://127.0.0.1:3000
+```
+
+Nhấn **Ctrl+C** trong terminal để dừng máy chủ. Không cần chạy `npm install` để khởi động bản Python.
+
+## 3. Kết nối OpenClaw thật (tùy chọn)
+
+Cài OpenClaw theo [hướng dẫn chính thức](https://docs.openclaw.ai/install). Trên Windows PowerShell, tài liệu OpenClaw cung cấp lệnh cài đặt:
 
 ```powershell
 iwr -useb https://openclaw.ai/install.ps1 | iex
 ```
 
-Sau khi cài đặt, chạy hướng dẫn cấu hình:
+Sau khi cài đặt, hoàn tất cấu hình và kiểm tra Gateway:
 
 ```powershell
 openclaw onboard
@@ -24,44 +46,33 @@ openclaw doctor
 openclaw gateway status
 ```
 
-Nếu lệnh `openclaw` chưa nhận diện được, hãy đóng và mở lại terminal rồi kiểm tra PATH.
+Demo kiểm tra Gateway tại `http://127.0.0.1:18789/` và có nút mở Control UI. Nếu Gateway chưa chạy, trang demo vẫn mở được nhưng sẽ hiển thị trạng thái chưa kết nối.
 
-## Chạy demo
-
-Tại thư mục dự án:
-
-```powershell
-npm install
-npm start
-```
-
-Mở `http://127.0.0.1:3000`. Trang demo kiểm tra Gateway cục bộ và cung cấp liên kết mở Control UI của OpenClaw tại `http://127.0.0.1:18789/`.
-
-> Lưu ý: ứng dụng demo không thay thế OpenClaw và không tự tạo API key. Hãy hoàn tất `openclaw onboard` trước khi sử dụng.
-
-## Cấu trúc
+## 4. Cấu trúc
 
 ```text
- du-an4/
- ├─ public/
- │  ├─ index.html
- │  ├─ app.js
- │  └─ style.css
- ├─ server.js
- ├─ package.json
- ├─ .gitignore
- └─ README.md
+du-an4/
+├─ app.py             # Máy chủ web Python
+├─ public/
+│  ├─ index.html      # Giao diện
+│  ├─ app.js          # Kiểm tra trạng thái trên trình duyệt
+│  └─ style.css       # Giao diện và kiểu dáng
+├─ server.js          # Phiên bản máy chủ Node.js (tùy chọn)
+├─ package.json       # Dùng nếu chạy phiên bản Node.js
+├─ .gitignore
+└─ README.md
 ```
 
-## An toàn
+## 5. An toàn
 
-- Chỉ bind máy chủ demo vào `127.0.0.1`, không công khai cổng ra Internet.
+- Máy chủ demo chỉ lắng nghe trên `127.0.0.1`, không công khai cổng ra mạng.
 - Không đưa API key, token hoặc tệp cấu hình cá nhân lên GitHub.
-- Không kết nối kênh nhắn tin hoặc người dùng khác trước khi đọc hướng dẫn bảo mật chính thức.
-- Gateway có thể thực thi công cụ trên máy chủ theo cấu hình; chỉ dùng với nguồn tin cậy và cấu hình quyền truy cập phù hợp.
+- Đây là demo học tập, không phải máy chủ production. Thư viện `http.server` của Python chỉ phù hợp với máy chủ thử nghiệm đơn giản ([tài liệu Python](https://docs.python.org/3/library/http.server.html)).
+- Gateway có thể thực thi công cụ trên máy theo cấu hình; chỉ dùng với nguồn tin cậy và cấu hình quyền truy cập phù hợp.
 
 ## Tài liệu
 
 - [OpenClaw trên GitHub](https://github.com/openclaw/openclaw)
 - [Getting started](https://github.com/openclaw/openclaw/blob/main/docs/start/getting-started.md)
-- [Hướng dẫn cài đặt](https://docs.openclaw.ai/install)
+- [Hướng dẫn cài đặt OpenClaw](https://docs.openclaw.ai/install)
+- [Python http.server](https://docs.python.org/3/library/http.server.html)
