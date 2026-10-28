@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenClaw Local Demo</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="mark">🦞</div>
+      <div>
+        <p class="eyebrow">LOCAL AI WORKSPACE</p>
+        <h1>OpenClaw Demo</h1>
+      </div>
+      <span class="local-tag">Chạy cục bộ</span>
+    </header>
+
+    <section class="hero">
+      <p class="eyebrow">BẢNG ĐIỀU KHIỂN DEMO</p>
+      <h2>Trợ lý AI của bạn,<br><span>ngay trên máy tính.</span></h2>
+      <p class="intro">Dự án mẫu giúp kiểm tra OpenClaw Gateway và mở giao diện trò chuyện chính thức.</p>
+      <div class="actions">
+        <a class="button primary" href="http://127.0.0.1:18789/" target="_blank" rel="noreferrer">Mở OpenClaw Control UI ↗</a>
+        <button class="button secondary" id="refresh">Kiểm tra kết nối</button>
+      </div>
+    </section>
+
+    <section class="status-card">
+      <div class="card-head">
+        <div><p class="eyebrow">TRẠNG THÁI</p><h3>Kết nối Gateway</h3></div>
+        <span id="dot" class="dot"></span>
+      </div>
+      <p id="status-title" class="status-title">Đang kiểm tra…</p>
+      <p id="status-message" class="muted">Đang kiểm tra Gateway tại máy tính này.</p>
+      <div class="meta"><span>Gateway URL</span><code>127.0.0.1:18789</code></div>
+      <div class="meta"><span>Demo URL</span><code>127.0.0.1:3000</code></div>
+      <p id="checked-at" class="tiny"></p>
+    </section>
+
+    <section class="steps">
+      <p class="eyebrow">BẮT ĐẦU</p>
+      <h3>Chạy OpenClaw</h3>
+      <ol>
+        <li><span>01</span><div><strong>Cài OpenClaw</strong><p>Làm theo hướng dẫn cài đặt chính thức dành cho hệ điều hành của bạn.</p></div></li>
+        <li><span>02</span><div><strong>Cấu hình trợ lý</strong><p>Chạy <code>openclaw onboard</code> và hoàn tất cấu hình mô hình.</p></div></li>
+        <li><span>03</span><div><strong>Kiểm tra rồi trò chuyện</strong><p>Chạy <code>openclaw gateway status</code>, sau đó mở Control UI.</p></div></li>
+      </ol>
+    </section>
+
+    <footer>Demo học tập · Không phải giao diện chính thức của OpenClaw</footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
